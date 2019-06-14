@@ -1,0 +1,40 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+         custom:
+            client-id: sampleClient_TempCustomer1
+            client-secret: temp_SampleClientCustomerSecret
+            scope: corporateuser
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8089/login/oauth2/code/custom
+            client-name: sampleClient_TempCustomer1
+        provider:
+          custom:
+            authorization-uri: http://localhost:8081/spring-security-identity-server/oauth/authorize
+            token-uri: http://localhost:8081/spring-security-identity-server/oauth/token
+            user-info-uri: http://localhost:8090/spring-test/spring-security-oauth-resource/users/extra
+            user-name-attribute: user_name
+
+
+zuul:
+  sensitiveHeaders: 
+  routes:
+    spring-test/spring-resource: 
+      path: /spring-test/spring-resource/**
+      url: http://localhost:8090/spring-test/spring-security-oauth-resource
+    spring-test/spring-resource-2:
+      path: /spring-test/spring-resource-2/**
+      url: http://localhost:8091/spring-test/spring-security-oauth-resource-2      
+    oauth-authorization:
+      path:  /oauth-authorization/**
+      url: http://localhost:8081/spring-security-identity-server
+      stripPrefix: false
+  add-proxy-headers: true
+  
+  
+logging: 
+  level:
+    org.springframework: DEBUG 
+    
