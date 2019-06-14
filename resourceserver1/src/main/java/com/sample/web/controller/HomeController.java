@@ -3,6 +3,7 @@ package com.sample.web.controller;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +40,10 @@ public class HomeController {
     }
     
     @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
-	public ModelAndView home(Authentication auth) {
+	public ModelAndView home(Authentication auth,HttpServletRequest request) {
     	System.out.println(auth.getName());
     	
-		HttpSession httpSession =WebUtils.getRequest().getSession();
+		HttpSession httpSession =request.getSession(false);
 		
 		httpSession.setAttribute("TEST_SESSION", "Testing");
 		
