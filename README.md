@@ -1,5 +1,5 @@
-# zuulandhazelcastwithoauth2
-Sample project with zuul as gataway, oauth2 for security and hazelcast as distributed session
+# Sample project with zuul, oauth2, and hazelcast
+Sample project with zuul for api gataway, oauth2 for security and hazelcast for distributed session
 
 SCENERIO
 --------------------------------------------------------------------------------------------------
