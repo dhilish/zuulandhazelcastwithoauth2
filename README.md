@@ -36,7 +36,7 @@ Following are the steps that i had performed -
 
 PROBLEM
 -------------------------------------------------------------------------------------------------------------
-I have been stuck with the following problems for the past few weeks. Please help us in this regard:- 
+I have been stuck with the following problems for the past few weeks. Please help me in this regard:- 
 
 1. I want to have ResourceServer2 having access to session information created by ResourceServer1. But I could not get session information on ResourceServer2, it is always returning null. I had checked Hazelcast server using Hazelcast Mancenter and found that session is distributed.
 
