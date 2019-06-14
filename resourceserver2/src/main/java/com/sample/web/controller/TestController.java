@@ -21,14 +21,14 @@ public class TestController {
 
 	@GetMapping(value ="/test1")
 	public HttpEntity<String> test1(@RequestParam String userCode,HttpServletRequest request){
-		
-		HttpSession httpSession=request.getSession();
-		
+
+		HttpSession httpSession=request.getSession(false);
+
 		Authentication authentication = (Authentication) httpSession.getAttribute("Authentication");
-		
+
 		if(authentication!=null)
 		System.out.println("Auth_name from Session set in zuul custom_success handler: "+authentication.getName());
-		
+
 		System.out.println("TEST_SESSION setted in resourse-1 = "+httpSession.getAttribute("TEST_SESSION"));
 		String val="testing1";
 		System.out.println(val);
@@ -37,12 +37,12 @@ public class TestController {
 	}
 	@GetMapping(value ="/test2")
 	public HttpEntity<String> test2(HttpServletRequest request){
-	
-		HttpSession httpSession=request.getSession();
+
+		HttpSession httpSession=request.getSession(false);
 		Authentication authentication = (Authentication) httpSession.getAttribute("Authentication");
 		if(authentication!=null)
 			System.out.println("Auth_name from Session set in zuul custom_success handler: "+authentication.getName());
-		
+
 		Cookie cookies[]=WebUtils.getRequest().getCookies();
 		String setCookies="";
 		if(cookies!=null) {
@@ -51,14 +51,14 @@ public class TestController {
 			}
 		}
 		System.out.println("Cookie_val-R2="+setCookies);
-		
+
 		System.out.println("TEST_SESSION setted in resourse-1 = "+httpSession.getAttribute("TEST_SESSION"));
 		String val="testing2";
 		System.out.println(val);
 		HttpEntity<String> httpEntity=new HttpEntity<>(val);
 		return httpEntity;
-	} 
-	
+	}
+
 	@GetMapping(value ="/test3")
 	public HttpEntity<String> test3(){
 		String val="testing3";
