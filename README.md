@@ -30,7 +30,7 @@ Following are the steps that i had performed -
 
 11. From web page, made rest api call to ResourceServer1 through Zuul API Gateway and here the auth token was appended.
 
-12. Control reached ResourceServer2 controller and returned the expected value.
+12. Control reached ResourceServer1 controller and returned the expected value.
 
 13. Found that for every api call to ResourceServer1 from web browser, a new session was created for ResourceServer1.
 
