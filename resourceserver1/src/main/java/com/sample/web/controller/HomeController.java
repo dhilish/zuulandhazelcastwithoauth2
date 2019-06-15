@@ -45,6 +45,8 @@ public class HomeController {
     	
 		HttpSession httpSession =request.getSession(false);
 		
+		System.out.println("session-id="+httpSession.getId());
+		
 		httpSession.setAttribute("TEST_SESSION", "Testing");
 		
 		Cookie cookies[]=WebUtils.getRequest().getCookies();
