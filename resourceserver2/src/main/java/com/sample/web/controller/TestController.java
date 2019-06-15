@@ -8,11 +8,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.session.MapSession;
+import org.springframework.session.hazelcast.config.annotation.web.http.HazelcastHttpSessionConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hazelcast.core.IMap;
 import com.sample.web.util.WebUtils;
 
 @RestController
@@ -23,7 +26,7 @@ public class TestController {
 	public HttpEntity<String> test1(@RequestParam String userCode,HttpServletRequest request){
 
 		HttpSession httpSession=request.getSession(false);
-
+		
 		Authentication authentication = (Authentication) httpSession.getAttribute("Authentication");
 
 		if(authentication!=null)

@@ -60,12 +60,12 @@
                <write-delay-seconds>0</write-delay-seconds>
                <write-batch-size>1</write-batch-size>
           </map-store>
-          <indexes>
+         <!--  <indexes>
                <index ordered="false">principalName</index>
           </indexes>
           <attributes>
                <attribute extractor="org.springframework.session.hazelcast.PrincipalNameExtractor">principalName</attribute>
-          </attributes>
+          </attributes> -->
      </map>
    
 
