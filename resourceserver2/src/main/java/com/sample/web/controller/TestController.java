@@ -20,8 +20,8 @@ import com.sample.web.util.WebUtils;
 @RequestMapping("/test")
 public class TestController {
 
-	@Autowired
-	FindByIndexNameSessionRepository<? extends Session> sessions;
+//	@Autowired
+//	FindByIndexNameSessionRepository<? extends Session> sessions;
 	
 	@GetMapping(value ="/test1")
 	public HttpEntity<String> test1(@RequestParam String userCode,HttpServletRequest request){
@@ -30,9 +30,9 @@ public class TestController {
 		
 		Authentication authentication = (Authentication) httpSession.getAttribute("Authentication");
 
-		Session session=sessions.findById(httpSession.getId());
+		/*Session session=sessions.findById(httpSession.getId());
 		String testSession=session.getAttribute("TEST_SESSION");
-		System.out.println(testSession);
+		System.out.println(testSession);*/
 		if(authentication!=null)
 		System.out.println("Auth_name from Session set in zuul custom_success handler: "+authentication.getName());
 
