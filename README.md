@@ -5,7 +5,7 @@ SCENERIO
 --------------------------------------------------------------------------------------------------
 I have Zuul Server as API gateway, Identity Server with Oauth2, ResourceServer1 and ResourceServer2 in the following code sample
 
-ZuulServer, ResourceServer1 and ResourceServer2 have a distributed session with Hazelcast.
+ZuulServer, ResourceServer1 and ResourceServer2 have a distributed session with Hazelcast. 
 
 Following are the steps that i had performed - 
 1. Http page reqest that comes to zuul server will be redirected to login page at identity server. Autheticate user with oauth2. (A jsessionid is returned with the path "/")
