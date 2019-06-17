@@ -2,8 +2,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>oauth-resource-server-1</artifactId>
-	<name>oauth-resource-server-1</name>
+	<artifactId>oauth-resource-server-2</artifactId>
+	<name>oauth-resource-server-2</name>
 	<packaging>war</packaging>
 
 	<parent>
@@ -148,7 +148,7 @@
 	</dependencies>
 
 	<build>
-		<!-- <finalName>oauth-resource-server-1</finalName>
+		<!-- <finalName>oauth-resource-server-2</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
