@@ -4,24 +4,25 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.session.MapSession;
-import org.springframework.session.hazelcast.config.annotation.web.http.HazelcastHttpSessionConfiguration;
+import org.springframework.session.FindByIndexNameSessionRepository;
+import org.springframework.session.Session;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hazelcast.core.IMap;
 import com.sample.web.util.WebUtils;
 
 @RestController
 @RequestMapping("/test")
 public class TestController {
 
+	@Autowired
+	FindByIndexNameSessionRepository<? extends Session> sessions;
+	
 	@GetMapping(value ="/test1")
 	public HttpEntity<String> test1(@RequestParam String userCode,HttpServletRequest request){
 
@@ -29,6 +30,9 @@ public class TestController {
 		
 		Authentication authentication = (Authentication) httpSession.getAttribute("Authentication");
 
+		Session session=sessions.findById(httpSession.getId());
+		String testSession=session.getAttribute("TEST_SESSION");
+		System.out.println(testSession);
 		if(authentication!=null)
 		System.out.println("Auth_name from Session set in zuul custom_success handler: "+authentication.getName());
 

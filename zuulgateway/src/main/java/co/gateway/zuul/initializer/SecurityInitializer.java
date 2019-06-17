@@ -2,13 +2,12 @@ package co.gateway.zuul.initializer;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
-import com.hazelcast.config.SecurityConfig;
-
-import co.gateway.zuul.DemoApplication;
+import co.gateway.zuul.config.HazSessionConfig;
+import co.gateway.zuul.config.SecurityConfig;
 
 public class SecurityInitializer extends AbstractSecurityWebApplicationInitializer {
 
 	public SecurityInitializer() {
-		super(SecurityConfig.class, DemoApplication.class);
+		super(SecurityConfig.class, HazSessionConfig.class);
 	}
 }

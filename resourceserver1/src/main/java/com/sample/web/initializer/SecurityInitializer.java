@@ -2,12 +2,12 @@ package com.sample.web.initializer;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
-import com.hazelcast.config.SecurityConfig;
-import com.sample.config.ResourceServerApplication;
+import com.sample.config.HazSessionConfig;
+import com.sample.config.SecurityConfig;
 
 public class SecurityInitializer extends AbstractSecurityWebApplicationInitializer {
 
 	public SecurityInitializer() {
-		super(SecurityConfig.class, ResourceServerApplication.class);
+		super(SecurityConfig.class, HazSessionConfig.class);
 	}
 }
