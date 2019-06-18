@@ -38,7 +38,7 @@ public class HazSessionConfig {
 					.setExtractor(PrincipalNameExtractor.class.getName());
 			
 		Config config= new XmlConfigBuilder(hazelcastFolder.concat(profile).concat("_HazelcastDistributedSession.xml")).build();
-		
+		config.setInstanceName("hzSession");
 		SerializerConfig serializer = new SerializerConfig()
 				.setImplementation(new ObjectStreamSerializer())
 				.setTypeClass(Object.class);
@@ -50,6 +50,7 @@ public class HazSessionConfig {
 		.addMapAttributeConfig(attributeConfig)
 		.addMapIndexConfig(new MapIndexConfig(
 				HazelcastSessionRepository.PRINCIPAL_NAME_ATTRIBUTE, false));
+		cacheCreation();
 		return  Hazelcast.newHazelcastInstance(config); 
 		}
 		catch(FileNotFoundException e) {
@@ -58,7 +59,18 @@ public class HazSessionConfig {
 		
 
 	}
-	
+	public void cacheCreation() {
+		Config config;
+		try {
+			config = new XmlConfigBuilder(hazelcastFolder.concat(profile).concat("_HazelcastGlobalCache.xml")).build();
+			config.setInstanceName("hzCache");
+			HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(config);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 	
 }
 
