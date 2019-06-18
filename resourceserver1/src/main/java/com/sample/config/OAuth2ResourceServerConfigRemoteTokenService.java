@@ -7,14 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -44,7 +40,7 @@ public class OAuth2ResourceServerConfigRemoteTokenService extends ResourceServer
     public RemoteTokenServices tokenServices() {
         final RemoteTokenServices tokenService = new RemoteTokenServices();
         tokenService.setAccessTokenConverter(customAccessTokenConverter);
-        tokenService.setCheckTokenEndpointUrl("http://localhost:8081/spring-security-identity-server/oauth/check_token");
+        tokenService.setCheckTokenEndpointUrl("http://192.168.2.45:8081/spring-security-identity-server/oauth/check_token");
         tokenService.setClientId("sampleClient_TempCustomer1");
         tokenService.setClientSecret("temp_SampleClientCustomerSecret");
         return tokenService;
@@ -56,7 +52,7 @@ public class OAuth2ResourceServerConfigRemoteTokenService extends ResourceServer
             @Override
             public void commence(HttpServletRequest aRequest, HttpServletResponse aResponse,
                    AuthenticationException aAuthException) throws IOException, ServletException {
-                aResponse.sendRedirect("http://localhost:8089/login");
+                aResponse.sendRedirect("http://192.168.2.45:8089/login");
             }
         };
     }

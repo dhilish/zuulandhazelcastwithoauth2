@@ -13,6 +13,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.session.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -67,14 +68,14 @@ public class HomeController {
     	
     	HttpEntity<String> entity = new HttpEntity<String>(userCode,headers);
     	String response=restTemplate.exchange(
-    	         "http://localhost:8089/spring-test/spring-resource-2/test/test1?userCode=NEW PERSON 1", HttpMethod.GET, entity, String.class).getBody();
+    	         "http://192.168.2.45:8089/spring-test/spring-resource-2/test/test1?userCode=NEW PERSON 1", HttpMethod.GET, entity, String.class).getBody();
     	System.out.println(response);
-    	String response2=restTemplate.exchange(
-   	         "http://localhost:8089/spring-test/spring-resource-2/test/test2", HttpMethod.GET, entity, String.class).getBody();
+    	/*String response2=restTemplate.exchange(
+   	         "http://192.168.2.45:8089/spring-test/spring-resource-2/test/test2", HttpMethod.GET, entity, String.class).getBody();
     	System.out.println(response2);
     	String response3=restTemplate.exchange(
-      	         "http://localhost:8089/spring-test/spring-resource-2/test/test3", HttpMethod.GET, entity, String.class).getBody();
-    	System.out.println(response3);
+      	         "http://192.168.2.45:8089/spring-test/spring-resource-2/test/test3", HttpMethod.GET, entity, String.class).getBody();
+    	System.out.println(response3);*/
     	ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("admin/dummyhome");
 		return modelAndView;

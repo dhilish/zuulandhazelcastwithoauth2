@@ -4,7 +4,7 @@ $( document ).ready(function() {
 	          type: 'GET',
 	          dataType: "jsonp",
 	          contentType: "application/json; charset=utf-8",
-	          url: 'http://localhost:8089/spring-test/spring-resource-2/test/test2',
+	          url: 'http://192.168.2.45:8089/spring-test/spring-resource-2/test/test2',
 	          headers: {
 	            //WRITE IF THEIR HAVE SOME HEADER REQUEST OR DATA
 	          },
