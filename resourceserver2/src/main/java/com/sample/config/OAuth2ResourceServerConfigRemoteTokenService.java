@@ -28,22 +28,22 @@ public class OAuth2ResourceServerConfigRemoteTokenService extends ResourceServer
 	 @Autowired
 	    private CustomAccessTokenConverter customAccessTokenConverter;
 	
-    @Override
-    public void configure(final HttpSecurity http) throws Exception {
-	    	 http
-	         .authorizeRequests()
-	         .anyRequest().access("#oauth2.hasScope('corporateuser')")
-	         .and()
-	         .exceptionHandling()
-	             .authenticationEntryPoint(authenticationEntryPoint());
-    }
-
+	    @Override
+	    public void configure(final HttpSecurity http) throws Exception {
+		    	 http
+		         .authorizeRequests()
+		         .anyRequest().access("#oauth2.hasScope('corporateuser')")
+		         .and()
+		         .exceptionHandling()
+		             .authenticationEntryPoint(authenticationEntryPoint());
+	    }
+	    
     @Primary
     @Bean
     public RemoteTokenServices tokenServices() {
         final RemoteTokenServices tokenService = new RemoteTokenServices();
         tokenService.setAccessTokenConverter(customAccessTokenConverter);
-        tokenService.setCheckTokenEndpointUrl("http://localhost:8081/spring-security-identity-server/oauth/check_token");
+        tokenService.setCheckTokenEndpointUrl("http://192.168.2.45:8081/spring-security-identity-server/oauth/check_token");
         tokenService.setClientId("sampleClient_TempCustomer1");
         tokenService.setClientSecret("temp_SampleClientCustomerSecret");
         return tokenService;
@@ -55,7 +55,7 @@ public class OAuth2ResourceServerConfigRemoteTokenService extends ResourceServer
             @Override
             public void commence(HttpServletRequest aRequest, HttpServletResponse aResponse,
                    AuthenticationException aAuthException) throws IOException, ServletException {
-                aResponse.sendRedirect("http://localhost:8089/login");
+                aResponse.sendRedirect("http://192.168.2.45:8089/login");
             }
         };
     }

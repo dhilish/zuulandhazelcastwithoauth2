@@ -4,6 +4,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.sample.web.util.WebUtils;
 
@@ -20,8 +22,8 @@ import com.sample.web.util.WebUtils;
 @RequestMapping("/test")
 public class TestController {
 
-//	@Autowired
-//	FindByIndexNameSessionRepository<? extends Session> sessions;
+	@Autowired
+	FindByIndexNameSessionRepository<? extends Session> sessions;
 	
 	@GetMapping(value ="/test1")
 	public HttpEntity<String> test1(@RequestParam String userCode,HttpServletRequest request){
@@ -30,9 +32,12 @@ public class TestController {
 		
 		Authentication authentication = (Authentication) httpSession.getAttribute("Authentication");
 
-		/*Session session=sessions.findById(httpSession.getId());
-		String testSession=session.getAttribute("TEST_SESSION");
-		System.out.println(testSession);*/
+		Session session=sessions.findById(httpSession.getId());
+		
+		if(session!=null)
+			System.out.println(session.getAttribute("TEST_SESSION").toString());
+		
+		
 		if(authentication!=null)
 		System.out.println("Auth_name from Session set in zuul custom_success handler: "+authentication.getName());
 
