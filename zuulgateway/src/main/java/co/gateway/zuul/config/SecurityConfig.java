@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .oauth2Login().loginPage("http://localhost:8089/oauth2/authorization/custom")
+                .oauth2Login().loginPage("http://192.168.2.45:8089/oauth2/authorization/custom")
                 .successHandler(customAuthenticationSuccessHandler());
     	http.addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
     }

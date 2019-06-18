@@ -37,7 +37,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 				}
 		}
 		System.out.println("CookieVal-successHandler="+printCookies);
-		response.sendRedirect("http://localhost:8089/spring-test/spring-resource/admin/home");
+		response.sendRedirect("http://192.168.2.45:8089/spring-test/spring-resource/admin/home");
 	}
 
 }

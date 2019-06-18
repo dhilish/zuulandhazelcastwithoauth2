@@ -24,21 +24,21 @@
                </multicast>
                <tcp-ip enabled="true" connection-timeout-seconds="5">
                     <member-list>
-                         <member>localhost</member>
+                         <member>192.168.2.45</member>
                     </member-list>
                </tcp-ip>
-               <aws enabled="false"/>
+               <!-- <aws enabled="false"/>
                <gcp enabled="false"/>
                <azure enabled="false"/>
                <kubernetes enabled="false"/>
                <eureka enabled="false"/>
-               <discovery-strategies/>
+               <discovery-strategies/> -->
           </join>
-          <interfaces enabled="false"/>
+          <!-- <interfaces enabled="false"/>
           <ssl enabled="false"/>
-          <socket-interceptor enabled="false"/>
+          <socket-interceptor enabled="false"/> -->
      </network>
-     <map name="spring:session:sessions">
+     <!-- <map name="spring:session:sessions">
           <in-memory-format>BINARY</in-memory-format>
           <statistics-enabled>true</statistics-enabled>
           <optimize-queries>false</optimize-queries>
@@ -60,12 +60,12 @@
                <write-delay-seconds>0</write-delay-seconds>
                <write-batch-size>1</write-batch-size>
           </map-store>
-         <!--  <indexes>
+          <indexes>
                <index ordered="false">principalName</index>
           </indexes>
           <attributes>
                <attribute extractor="org.springframework.session.hazelcast.PrincipalNameExtractor">principalName</attribute>
-          </attributes> -->
+          </attributes>
 		
-     </map>
+     </map> -->
 </hazelcast>
