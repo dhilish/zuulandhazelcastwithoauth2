@@ -59,7 +59,7 @@ public class OAuth2AuthorizationServerConfigInMemory extends AuthorizationServer
           .secret(passwordEncoder().encode("temp_SampleClientCustomerSecret"))
           .authorizedGrantTypes("password", "authorization_code", "refresh_token", "client_credentials")
           .scopes("corporateuser")
-          .redirectUris("http://localhost:8089/login/oauth2/code/custom")
+          .redirectUris("http://192.168.2.45:8089/login/oauth2/code/custom")
           .accessTokenValiditySeconds(3600) // 1 hour
           .refreshTokenValiditySeconds(2592000)
           .autoApprove(true);
