@@ -65,6 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**", "/static/**", "/javascript/**");
+		web.ignoring().antMatchers("/resources/**", "/static/**", "/javascript/**", "/spring-test/spring-resource/javascript**");
 	}
 }
