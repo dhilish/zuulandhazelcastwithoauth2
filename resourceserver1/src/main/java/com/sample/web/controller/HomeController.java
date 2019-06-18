@@ -13,7 +13,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
-import org.springframework.session.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hazelcast.core.Hazelcast;
+import com.sample.web.model.Globalvariables;
 import com.sample.web.util.WebUtils;
 
 @Controller
@@ -44,11 +45,23 @@ public class HomeController {
 	public ModelAndView home(Authentication auth,HttpServletRequest request) {
     	System.out.println(auth.getName());
     	
-		HttpSession httpSession =request.getSession(false);
+		HttpSession httpSession =request.getSession();
 		
+		 OAuth2AuthenticationDetails oauthDetails = (OAuth2AuthenticationDetails) auth.getDetails();
+		 
+		 String token=oauthDetails.getTokenValue();
 		System.out.println("session-id="+httpSession.getId());
-		
 		httpSession.setAttribute("TEST_SESSION", "Testing");
+		
+		Globalvariables globalvariables=new Globalvariables();
+		globalvariables.setPersonName("tesing");
+		
+		
+		Map<String,Globalvariables> map=Hazelcast.getHazelcastInstanceByName("hzCache").getMap("globalVariable");
+		
+		map.put(token, globalvariables);
+		
+//		Hazelcast.getHazelcastInstanceByName("_hzInstance_1_qa_HazelcastDistributedSession").getDistributedObjects();
 		
 		Cookie cookies[]=WebUtils.getRequest().getCookies();
 		String setCookies="";

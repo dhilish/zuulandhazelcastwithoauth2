@@ -3,11 +3,11 @@ package com.sample.web.initializer;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 import com.sample.config.HazSessionConfig;
-import com.sample.config.SecurityConfig;
+import com.sample.config.OAuth2ResourceServerConfigRemoteTokenService;
 
 public class SecurityInitializer extends AbstractSecurityWebApplicationInitializer {
 
 	public SecurityInitializer() {
-		super(SecurityConfig.class, HazSessionConfig.class);
+		super(OAuth2ResourceServerConfigRemoteTokenService.class, HazSessionConfig.class);
 	}
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast
+	xsi:schemaLocation="http://www.hazelcast.com/schema/config http://www.hazelcast.com/schema/config/hazelcast-config.xsd"
+	xmlns="http://www.hazelcast.com/schema/config"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<group>
+        <name>qa_HazelcastGlobalCache</name>
+    </group>
+ 
+	<!-- <management-center enabled="true" update-interval="3">
+          <url>http://localhost:8080/hazelcast-mancenter</url>
+          <mutual-auth enabled="false"/>
+     </management-center> -->
+	 <network>
+          <port port-count="20" auto-increment="true">5701</port>
+          <reuse-address>false</reuse-address>
+          <join>
+               <multicast enabled="false" loopbackModeEnabled="false">
+                    <multicast-group>224.2.2.3</multicast-group>
+                    <multicast-port>54327</multicast-port>
+                    <multicast-timeout-seconds>2</multicast-timeout-seconds>
+                    <multicast-time-to-live>32</multicast-time-to-live>
+               </multicast>
+               <tcp-ip enabled="true" connection-timeout-seconds="5">
+                    <member-list>
+                         <member>192.168.2.45</member>
+                    </member-list>
+               </tcp-ip>
+               <aws enabled="false"/>
+               <gcp enabled="false"/>
+               <azure enabled="false"/>
+               <kubernetes enabled="false"/>
+               <eureka enabled="false"/>
+               <discovery-strategies/>
+          </join>
+          <interfaces enabled="false">
+          		<interface>127.0.0.1</interface>
+       	  </interfaces>
+          <ssl enabled="false"/>
+          <socket-interceptor enabled="false"/>
+     </network>
+      
+ </hazelcast>

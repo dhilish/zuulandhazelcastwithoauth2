@@ -5,7 +5,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<group>
         <name>qa_HazelcastDistributedSession</name>
-       
     </group>
  
 	<!-- <management-center enabled="true" update-interval="3">

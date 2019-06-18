@@ -3,6 +3,7 @@ package com.sample.config;
 import java.io.FileNotFoundException;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.session.hazelcast.HazelcastSessionRepository;
@@ -39,6 +40,7 @@ public class HazSessionConfig {
 			
 		Config config= new XmlConfigBuilder(hazelcastFolder.concat(profile).concat("_HazelcastDistributedSession.xml")).build();
 		
+		config.setInstanceName("hzSession");
 		SerializerConfig serializer = new SerializerConfig()
 				.setImplementation(new ObjectStreamSerializer())
 				.setTypeClass(Object.class);
@@ -50,12 +52,29 @@ public class HazSessionConfig {
 		.addMapAttributeConfig(attributeConfig)
 		.addMapIndexConfig(new MapIndexConfig(
 				HazelcastSessionRepository.PRINCIPAL_NAME_ATTRIBUTE, false));
+		cacheCreation();
 		return  Hazelcast.newHazelcastInstance(config); 
 		}
 		catch(FileNotFoundException e) {
 			throw new FileNotFoundException("Hazelcast Configuration with ".concat(hazelcastFolder.concat(profile).concat("_HazelcastDistributedSession.xml")).concat(" Not Found"));
 		}
 		
+
+	}
+	
+	 
+		
+	public void cacheCreation() {
+		Config config;
+		try {
+			config = new XmlConfigBuilder(hazelcastFolder.concat(profile).concat("_HazelcastGlobalCache.xml")).build();
+			config.setInstanceName("hzCache");
+			HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(config);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 	
